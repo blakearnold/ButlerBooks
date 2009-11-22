@@ -1,3 +1,10 @@
+/**
+* @file class.php
+* @author Willi Ballenthin
+* @date Nov, 2009
+*
+*/
+
 <?php
   print '<?xml version="1.0" encoding="UTF-8" ?>';
 
@@ -56,7 +63,7 @@
 
   echo "<books>";
   while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    echo "<book_id>$row[book]</book_id>";
+    echo "<book_id>$row[book_id]</book_id>";
   }
   ?>
       </books>
