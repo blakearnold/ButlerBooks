@@ -36,7 +36,18 @@
       isbn_13 TEXT
       )";
 
-// do users too
+  var $book_instance = "CREATE TABLE book_instance(
+       boook_version_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+       book_id INT,
+       price INT,
+       seller TEXT
+       )";
+
+       
+  
+	
+	
+mysql_close($con);
 
   // query database
   var $result = mysql_query($class_info_query, $connection);
