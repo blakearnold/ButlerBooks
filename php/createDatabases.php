@@ -30,7 +30,7 @@
   $book_info_query = "CREATE TABLE book_info (
       book_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
       title TEXT,
-      author_id INT,
+      author TEXT,
       description TEXT
       );";
   print mysql_query($book_info_query, $connection);
