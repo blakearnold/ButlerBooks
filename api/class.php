@@ -36,6 +36,20 @@
   if ($num_rows <= 0) {
     // TODO
     // handle no data error
+    ?>
+      <response>
+        <query>
+          <id><?=$id?></id>
+        </query>
+        <error>
+          <text>
+            The specified class does not exist.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
   }
 
   // build response
@@ -57,8 +71,8 @@
   $result   = mysql_query($query, $connection);
   $num_rows = mysql_num_rows($result);
   if ($num_rows <= 0) {
-    // TODO
-    // handle no data error
+    // i dont think this is an error
+    // there are just no books
   } 
 
   echo "<books>";
