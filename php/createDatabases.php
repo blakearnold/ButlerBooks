@@ -39,7 +39,7 @@
 
   $book_version_info_query = "CREATE TABLE book_version_info (
       book_version_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-      book_id INT,
+      book_id INT NOT NULL,
       version INT,
       isbn_10 TEXT,
       isbn_13 TEXT
@@ -48,8 +48,9 @@
     print mysql_error($connection);
   print "<br />";
 
-  $book_instance_query = "CREATE TABLE book_instance (
+  $book_instance_query = "CREATE TABLE book_instance_info (
        book_instance_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+       book_version_id INT NOT NULL,
        price INT,
        seller TEXT
        );";
