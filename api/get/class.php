@@ -35,25 +35,7 @@ sample output:
   $database = "adi";
   $id       = null;
 
-  // parse options
-  if(!isset($_GET['id'])){
-  	?>
-      <response>
-        <query>
-          <method>get/class</method>
-          <id><?=$id?></id>
-        </query>
-        <error>
-          <text>
-            Required parameters not present.
-          </text>
-        </error>
-      <?
-      return;
-  } else {
-    $id = mysql_real_escape_string($_GET["id"]);
-  }
-  
+
   // connect to database
   $connection = mysql_connect(localhost, $username, $password);
   if (!$connection) {
@@ -61,7 +43,7 @@ sample output:
       <response>
         <query>
           <method>get/class</method>
-          <id><?=$id?></id>
+          <id><?=$_GET['id']?></id>
         </query>
         <error>
           <text>
@@ -73,6 +55,27 @@ sample output:
 
     return;
   }
+
+  // parse options
+  if(!isset($_GET['id'])){
+  	?>
+      <response>
+        <query>
+          <method>get/class</method>
+          <id><?=$_GET['id']?></id>
+        </query>
+        <error>
+          <text>
+            Required parameters not present.
+          </text>
+        </error>
+      <?
+      return;
+  } else {
+    $id = mysql_real_escape_string($_GET["id"], $connection);
+  }
+  
+
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   // create query

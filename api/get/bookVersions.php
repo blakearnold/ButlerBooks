@@ -39,13 +39,34 @@
   $database = "adi";
   $id       = null;
 
+  $connection = mysql_connect(localhost, $username, $password);
+  if (!$connection) {
+  	?>
+      <response>
+        <query>
+          <method>get/bookVersions</method>
+          <id><?=$_GET['book']?></id>
+        </query>
+        <error>
+          <text>
+            Could not connect to database.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
+  }
+
+
+
   // parse options
   if(!isset($_GET['book'])){
   	  	?>
       <response>
         <query>
           <method>get/bookVersions</method>
-          <id><?=$id?></id>
+          <id><?=$_GET['book']?></id>
         </query>
         <error>
           <text>
@@ -58,24 +79,7 @@
     $id = mysql_real_escape_string($_GET["book"]);
   }
   
-  $connection = mysql_connect(localhost, $username, $password);
-  if (!$connection) {
-  	?>
-      <response>
-        <query>
-          <method>get/bookVersions</method>
-          <id><?=$id?></id>
-        </query>
-        <error>
-          <text>
-            Could not connect to database.
-          </text>
-        </error>
-      </response>
-    <?
 
-    return;
-  }
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   $query = "SELECT * FROM book_version_info WHERE book_id=$id;";

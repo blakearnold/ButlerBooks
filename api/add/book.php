@@ -5,6 +5,9 @@
 * @date Nov, 2009
 *
 
+sample query:
+http://localhost/09/ButlerBooks/api/add/book.php?title=The Mythical Man-Month&author=Fred Brooks&description=A book about the difficulties of software engineering
+
 sample output:
 
 
@@ -22,6 +25,28 @@ sample output:
   $title    = null;
   $author   = null;
   $description = null;
+  
+  $connection = mysql_connect(localhost, $username, $password);
+  if (!$connection) {
+    ?>
+      <response>
+        <query>
+          <method>add/book</method>
+          <title><?=$_GET['title']?></title>
+          <author><?=$_GET['author']?></author>
+          <description><?=$_GET['description']?></description>
+        </query>
+        <error>
+          <text>
+            Could not connect to database.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
+  }
+  
   
   
   // parse options
@@ -44,31 +69,12 @@ sample output:
       <?
       return;
   } else {
- 	$title = mysql_real_escape_string($_GET["title"]);
-  	$author = mysql_real_escape_string($_GET["author"]);
-    $description = mysql_real_escape_string($_GET["description"]);
+ 	$title = mysql_real_escape_string($_GET["title"], $connection);
+  	$author = mysql_real_escape_string($_GET["author"], $connection);
+    $description = mysql_real_escape_string($_GET["description"], $connection);
   }  
 
-  $connection = mysql_connect(localhost, $username, $password);
-  if (!$connection) {
-    ?>
-      <response>
-        <query>
-          <method>add/book</method>
-          <title><?=$_GET['title']?></title>
-          <author><?=$_GET['author']?></author>
-          <description><?=$_GET['description']?></description>
-        </query>
-        <error>
-          <text>
-            Could not connect to database.
-          </text>
-        </error>
-      </response>
-    <?
 
-    return;
-  }
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   $query = "INSERT INTO book_info (title, author, description) 

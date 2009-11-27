@@ -42,34 +42,13 @@
   $database = "adi";
   $id       = null;
 
-  // parse options
-  // TODO 
-  // generalize option selection
-  if(!isset($_GET['version'])){
-  	?>
-      <response>
-        <query>
-          <method>get/bookInstances</method>
-          <id><?=$id?></id>
-        </query>
-        <error>
-          <text>
-            Required parameters not present.
-          </text>
-        </error>
-      <?
-      return;
-  } else {
-    $id = mysql_real_escape_string($_GET["version"]);
-  }
-  
   $connection = mysql_connect(localhost, $username, $password);
   if (!$connection) {
     ?>
       <response>
         <query>
           <method>get/bookInstances</method>
-          <id><?=$id?></id>
+          <id><?=$_GET['version']?></id>
         </query>
         <error>
           <text>
@@ -81,6 +60,29 @@
 
     return;
   }
+
+  // parse options
+  // TODO 
+  // generalize option selection
+  if(!isset($_GET['version'])){
+  	?>
+      <response>
+        <query>
+          <method>get/bookInstances</method>
+          <id><?=$_GET['version']?></id>
+        </query>
+        <error>
+          <text>
+            Required parameters not present.
+          </text>
+        </error>
+      <?
+      return;
+  } else {
+    $id = mysql_real_escape_string($_GET["version"], $connection);
+  }
+  
+
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   $query = "SELECT * FROM book_instance_info WHERE book_version_id=$id;";

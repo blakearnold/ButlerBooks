@@ -36,6 +36,26 @@ sample output:
   $database = "adi";
   $id       = null;
 
+  $connection = mysql_connect(localhost, $username, $password);
+  if (!$connection) {
+    ?>
+      <response>
+        <query>
+          <method>get/bookInstance</method>
+          <id><?=$_GET['instance']?></id>
+        </query>
+        <error>
+          <text>
+            Could not connect to database.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
+  }
+
+
   // parse options
   // TODO 
   // generalize option selection
@@ -54,27 +74,10 @@ sample output:
       <?
       return;
   } else {
-    $id = mysql_real_escape_string($_GET["instance"]);
+    $id = mysql_real_escape_string($_GET["instance"], $connection);
   }
   
-  $connection = mysql_connect(localhost, $username, $password);
-  if (!$connection) {
-    ?>
-      <response>
-        <query>
-          <method>get/bookInstance</method>
-          <id><?=$id?></id>
-        </query>
-        <error>
-          <text>
-            Could not connect to database.
-          </text>
-        </error>
-      </response>
-    <?
 
-    return;
-  }
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   $query = "SELECT * FROM book_instance_info WHERE book_instance_id=$id;";
