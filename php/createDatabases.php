@@ -22,7 +22,7 @@
 
   $class_books_query = "CREATE TABLE class_books (
       class_id  INT,
-      book INT);";
+      book_id INT);";
   print mysql_query($class_books_query, $connection);
   print mysql_error($connection);
   print "<br />";
@@ -48,9 +48,8 @@
     print mysql_error($connection);
   print "<br />";
 
-  $book_instance_query = "CREATE TABLE book_instance(
-       boook_version_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-       book_id INT,
+  $book_instance_query = "CREATE TABLE book_instance (
+       book_instance_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
        price INT,
        seller TEXT
        );";
