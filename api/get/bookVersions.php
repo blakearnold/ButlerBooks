@@ -37,16 +37,40 @@
 
   // parse options
   if(!isset($_GET['book'])){
-  	// TODO
-  	// do something other than die
-    die('Required parameters not present.');
+  	  	?>
+      <response>
+        <query>
+          <method>get/class</method>
+          <id><?=$id?></id>
+        </query>
+        <error>
+          <text>
+            Required parameters not present.
+          </text>
+        </error>
+      <?
+      return;
   } else {
     $id = $_GET["book"];
   }
   
   $connection = mysql_connect(localhost, $username, $password);
   if (!$connection) {
-    die('Could not connect: ' . mysql_error());
+  	?>
+      <response>
+        <query>
+          <method>get/bookVersions</method>
+          <id><?=$id?></id>
+        </query>
+        <error>
+          <text>
+            Could not connect to database.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
   }
   mysql_select_db($database, $connection) or die( "Unable to select database");
 

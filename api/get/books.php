@@ -44,7 +44,20 @@ sample output:
 
   $connection = mysql_connect(localhost, $username, $password);
   if (!$connection) {
-    die('Could not connect: ' . mysql_error());
+    ?>
+      <response>
+        <query>
+          <method>get/books</method>
+        </query>
+        <error>
+          <text>
+            Could not connect to database.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
   }
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
