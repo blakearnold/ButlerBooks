@@ -51,7 +51,7 @@
   $book_instance_query = "CREATE TABLE book_instance_info (
        book_instance_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
        book_version_id INT NOT NULL,
-       price INT,
+       price FLOAT,
        seller TEXT
        );";
   print mysql_query($book_instance_query, $connection);

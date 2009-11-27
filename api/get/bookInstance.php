@@ -4,6 +4,26 @@
 * @author Willi Ballenthin
 * @date Nov, 2009
 *
+
+sample output:
+<response> 
+  <query> 
+  	<method>get/bookInstances</method> 
+  	<book_version>1</book_instance> 
+  </query> 
+  <result> 
+  	<num_book_instances>1</num_book_instances> 
+    <book_instances> 
+		<book_instance>
+			<book_instance_id>1</book_instance_id>
+			<seller>wrb2102@columbia.edu</seller>
+			<price>12</price>
+		</book_instance>	
+    </book_instances> 
+  </result> 
+<response>
+
+
 */
 ?>
 

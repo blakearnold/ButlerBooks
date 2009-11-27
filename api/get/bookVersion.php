@@ -4,6 +4,29 @@
 * @author Willi Ballenthin
 * @date Nov, 2009
 *
+
+sample output:
+
+<response> 
+  <query> 
+  	<method>get/bookVersion</method> 
+  	<book_version>1</book_instance> 
+  </query> 
+  <result> 
+  	<num_book_versions>1</num_book_versions> 
+    <book_versions> 
+		<book_version>
+			<book_version_id>1</book_version_id>
+			<version>1</version>
+			<isbn_10>1234567890</isbn_10>
+			<isbn_13>1234567890123</isbn_13>
+		</book_version>	
+    </book_versions> 
+  </result> 
+<response>
+
+
+
 */
 ?>
 

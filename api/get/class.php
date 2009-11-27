@@ -4,28 +4,6 @@
 * @author Willi Ballenthin
 * @date Nov, 2009
 
-output:
-
-<?xml version="1.0" encoding="UTF-8" ?>
-<response>
-  <query>
-    <id>[id]</id>
-  </query>
-  <result>
-    <class>
-		<id>$id</id>
-		<title>$row[title]</title>
-		<num_books>$row[number]</num_books>
-		<books>
-			<book_id>$row[book_id]</book_id>
-			<book_id>$row[book_id]</book_id>
-			...
-			<book_id>$row[book_id]</book_id>
-      	</books>
-    </class>
-  </result>
-<response>
-
 sample output:
 <response> 
   <query> 
@@ -44,21 +22,6 @@ sample output:
     </class> 
   </result> 
 <response> 
-
-
-error output:
-
-<?xml version="1.0" encoding="UTF-8" ?>
-  <response>
-    <query>
-      <id><?=$id?></id>
-    </query>
-    <error>
-      <text>
-        The specified class does not exist.
-      </text>
-    </error>
-  </response>
 
 *
 */

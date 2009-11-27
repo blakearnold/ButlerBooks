@@ -12,13 +12,16 @@ sample output:
   	<method>get/classes</method> 
   </query> 
   <result> 
-  	<number>1</number> 
+  	<number>2</number> 
     <classes> 
 	  <class>
 	  	<class_id>1</class_id>
 	  	<title>Object Oriented Design</title>
 	  	<number>1007</number>
-	  	</class>      
+	  </class> 
+	  <class>
+		...
+	  </class>      
 	 </classes> 
   </result> 
 <response> 

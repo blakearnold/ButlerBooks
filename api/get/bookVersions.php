@@ -11,7 +11,7 @@
   	<book>1</book> 
   </query> 
   <result> 
-  	<num_book_versions>1</num_book_versions> 
+  	<num_book_versions>3</num_book_versions> 
     <book_versions> 
     	<book_version>
     		<book_version_id>1</book_version_id>
@@ -19,6 +19,10 @@
     		<isbn_10>1234567890</isbn_10>
     		<isbn_13>1234567890123</isbn_13>
     	</book_version>	
+    	<book_version>
+    		...
+    	</book_version>	
+    	...
     </book_versions> 
   </result> 
 <response>
