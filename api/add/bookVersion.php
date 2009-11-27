@@ -83,7 +83,7 @@ sample output:
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   $query = "INSERT INTO book_version_info (book_id, version, isbn_10, isbn_13) 
-  				VALUES ($book_id, '$version', $isbn_10, $isbn_13);";
+  				VALUES ($book_id, $version, '$isbn_10', '$isbn_13');";
   $result = mysql_query($query, $connection);
   if(!$result) {
      ?>
