@@ -58,7 +58,7 @@ sample output:
       <?
       return;
   } else {
-    $id = $_GET["version"];
+    $id = mysql_real_escape_string($_GET["version"]);
   }
   
   $connection = mysql_connect(localhost, $username, $password);

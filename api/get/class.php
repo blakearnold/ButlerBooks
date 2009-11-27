@@ -51,7 +51,7 @@ sample output:
       <?
       return;
   } else {
-    $id = $_GET["id"];
+    $id = mysql_real_escape_string($_GET["id"]);
   }
   
   // connect to database

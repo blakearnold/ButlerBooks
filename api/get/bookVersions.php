@@ -55,7 +55,7 @@
       <?
       return;
   } else {
-    $id = $_GET["book"];
+    $id = mysql_real_escape_string($_GET["book"]);
   }
   
   $connection = mysql_connect(localhost, $username, $password);
