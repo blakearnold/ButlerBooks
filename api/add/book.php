@@ -9,7 +9,15 @@ sample query:
 http://localhost/09/ButlerBooks/api/add/book.php?title=The Mythical Man-Month&author=Fred Brooks&description=A book about the difficulties of software engineering
 
 sample output:
-
+      <response> 
+        <query> 
+          <method>add/book</method> 
+          <title>The Mythical Man-Month</title> 
+          <author>Fred Brooks</author> 
+          <description>A book about the difficulties of software engineering</description> 
+        </query> 
+        <success></success> 
+      </response>
 
 
 */
@@ -66,6 +74,7 @@ sample output:
             Required parameters not present.
           </text>
         </error>
+      </response>
       <?
       return;
   } else {
@@ -108,6 +117,7 @@ sample output:
           <description><?=$_GET['description']?></description>
         </query>
         <success></success>
+      </response>
     <?   
   }
   
