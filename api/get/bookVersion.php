@@ -8,6 +8,7 @@
 ?>
 
 
+
 <?php
   print '<?xml version="1.0" encoding="UTF-8" ?>';
 
@@ -17,21 +18,47 @@
   $id       = null;
 
   // parse options
-  if(!isset($_GET['id'])){
-  	// TODO
-  	// do something other than die
-    die('Required parameters not present.');
+  // TODO 
+  // generalize option selection
+  if(!isset($_GET['version'])){
+  	?>
+      <response>
+        <query>
+          <method>get/bookVersion</method>
+          <id><?=$id?></id>
+        </query>
+        <error>
+          <text>
+            Required parameters not present.
+          </text>
+        </error>
+      <?
+      return;
   } else {
-    $id = $_GET["id"];
+    $id = $_GET["version"];
   }
   
   $connection = mysql_connect(localhost, $username, $password);
   if (!$connection) {
-    die('Could not connect: ' . mysql_error());
+    ?>
+      <response>
+        <query>
+          <method>get/bookVersion</method>
+          <id><?=$id?></id>
+        </query>
+        <error>
+          <text>
+            Could not connect to database.
+          </text>
+        </error>
+      </response>
+    <?
+
+    return;
   }
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
-  $query = "SELECT * FROM book_info;";
+  $query = "SELECT * FROM book_version_info WHERE book_version_id=$id;";
   $result   = mysql_query($query, $connection);
   $num_rows = mysql_num_rows($result);
   if ($num_rows <= 0) { /* TODO  */}
@@ -39,26 +66,27 @@
   ?>
 <response>
   <query>
-  	<method>get/books</method>
+  	<method>get/bookVersion</method>
+  	<book_version><?=$id?></book_instance>
   </query>
   <result>
-  	<num_books><?=$num_rows?></num_books>
-    <books>
+  	<num_book_versions><?=$num_rows?></num_book_versions>
+    <book_versions>
     
     <?
 
 	  while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	  	echo "<book>";
-		echo "<book_id>$row[book_id]</book_id>";
-		echo "<title>$row[title]</title>";
-		echo "<author>$row[author]</author>";
-		echo "<description>$row[description]</description>";
-		echo "</book>";
+	  	echo "<book_version>";
+		echo "<book_version_id>$row[book_version_id]</book_version_id>";
+		echo "<version>$row[version]</version>";
+		echo "<isbn_10>$row[isbn_10]</isbn_10>";
+		echo "<isbn_13>$row[isbn_13]</isbn_13>";
+		echo "</book_version>";
 	  }
 	  
 	?>
 	
-    </books>
+    </book_versions>
   </result>
 <response><?
   

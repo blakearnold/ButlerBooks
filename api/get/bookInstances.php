@@ -23,7 +23,7 @@
   	?>
       <response>
         <query>
-          <method>get/class</method>
+          <method>get/bookInstances</method>
           <id><?=$id?></id>
         </query>
         <error>

@@ -40,7 +40,7 @@
   	  	?>
       <response>
         <query>
-          <method>get/class</method>
+          <method>get/bookVersions</method>
           <id><?=$id?></id>
         </query>
         <error>
