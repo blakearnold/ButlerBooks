@@ -78,7 +78,7 @@ sample output:
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
   $query = "INSERT INTO book_info (title, author, description) 
-  				VALUES ($title, $author, $description);";
+  				VALUES ('$title', '$author', '$description');";
   $result = mysql_query($query, $connection);
   if(!$result) {
      ?>
