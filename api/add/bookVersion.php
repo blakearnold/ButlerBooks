@@ -6,9 +6,20 @@
 *
 
 sample query:
+http://localhost/09/ButlerBooks/api/add/bookVersion.php?book_id=1&version=3&isbn_10=0987654321&isbn_13=3210987654321
+
 
 sample output:
-
+	  <response> 
+        <query> 
+          <method>add/book</method> 
+          <book_id>1</book_id> 
+          <version>3</version> 
+          <isbn_10>0987654321</isbn_10> 
+          <isbn_13>3210987654321</isbn_13> 
+        </query> 
+        <success></success> 
+      </response> 
 
 
 */
@@ -74,9 +85,9 @@ sample output:
       return;
   } else {
   	$book_id = mysql_real_escape_string($_GET["book_id"], $connection);
- 	$title = mysql_real_escape_string($_GET["version"], $connection);
-  	$author = mysql_real_escape_string($_GET["isbn_10"], $connection);
-    $description = mysql_real_escape_string($_GET["isbn_13"], $connection);
+ 	$version = mysql_real_escape_string($_GET["version"], $connection);
+  	$isbn_10 = mysql_real_escape_string($_GET["isbn_10"], $connection);
+    $isbn_13 = mysql_real_escape_string($_GET["isbn_13"], $connection);
   }  
 
 
