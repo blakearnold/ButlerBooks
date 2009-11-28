@@ -37,10 +37,8 @@ sample output:
 
 */
 ?>
-
-
 <?php
-  print '<?xml seller="1.0" encoding="UTF-8" ?>';
+  print '<?xml version="1.0" encoding="ISO-8859-1"?>';
 
   $username = "adi";
   $password = "adi";
@@ -84,6 +82,7 @@ sample output:
 
 	  while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 	  	echo "<book_instance>";
+	  	echo "<book_version_id>$row[book_version_id]</book_version_id>";
 		echo "<book_instance_id>$row[book_instance_id]</book_instance_id>";
 		echo "<seller>$row[seller]</seller>";
 		echo "<price>$row[price]</price>";
@@ -94,7 +93,7 @@ sample output:
 	
     </book_instances>
   </result>
-<response><?
+</response><?
   
   mysql_close($connection);
 

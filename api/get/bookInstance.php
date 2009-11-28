@@ -109,7 +109,7 @@ sample output:
 	
     </book_instances>
   </result>
-<response><?
+</response><?
   
   mysql_close($connection);
 
