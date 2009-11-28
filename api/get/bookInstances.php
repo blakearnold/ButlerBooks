@@ -85,7 +85,11 @@
 
   mysql_select_db($database, $connection) or die( "Unable to select database");
 
-  $query = "SELECT * FROM book_instance_info WHERE book_version_id=$id;";
+  $query = "SELECT book_info.*, book_version_info.*, book_instance_info.*
+   FROM book_info, book_version_info, book_instance_info
+   WHERE book_instance_info.book_version_id=book_version_info.book_version_id
+   AND   book_version_info.book_id=book_info.book_id
+   AND   book_instance_info.book_version_id=$id;";
   $result   = mysql_query($query, $connection);
   $num_rows = mysql_num_rows($result);
   if ($num_rows <= 0) { /* TODO  */}
@@ -103,11 +107,23 @@
     <?
 
 	  while($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	  	echo "<book_instance>";
-		echo "<book_instance_id>$row[book_instance_id]</book_instance_id>";
-		echo "<seller>$row[seller]</seller>";
-		echo "<price>$row[price]</price>";
-		echo "</book_instance>";
+	  	?>
+	  	
+<book_instance>
+	<book_id><?=$row[book_id]?></book_id>
+	<title><?=$row[title]?></title>
+	<author><?=$row[author]?></author>
+	<description><?=$row[description]?></description>
+	<book_version_id><?=$row[book_version_id]?></book_version_id>
+	<version><?=$row[version]?></version>
+	<isbn_10><?=$row[isbn_10]?></isbn_10>
+	<isbn_13><?=$row[isbn_13]?></isbn_13>
+	<book_instance_id><?=$row[book_instance_id]?></book_instance_id>
+	<seller><?=$row[seller]?></seller>
+	<price><?=$row[price]?></price>
+</book_instance>
+	  	
+	  	<?
 	  }
 	  
 	?>
