@@ -24,8 +24,6 @@ sample output:
 
 */
 ?>
-
-
 <?php
   print '<?xml version="1.0" encoding="UTF-8" ?>';
 
@@ -42,7 +40,7 @@ sample output:
     ?>
       <response>
         <query>
-          <method>add/book</method>
+          <method>add/bookVersion</method>
           <book_id><?=$_GET['book_id']?></book_id>
           <version><?=$_GET['version']?></version>
           <isbn_10><?=$_GET['isbn_10']?></isbn_10>
@@ -69,7 +67,7 @@ sample output:
   	?>
       <response>
         <query>
-          <method>add/book</method>
+          <method>add/bookVersion</method>
           <book_id><?=$_GET['book_id']?></book_id>
           <version><?=$_GET['version']?></version>
           <isbn_10><?=$_GET['isbn_10']?></isbn_10>
@@ -100,7 +98,7 @@ sample output:
      ?>
       <response>
         <query>
-          <method>add/book</method>
+          <method>add/bookVersion</method>
           <book_id><?=$_GET['book_id']?></book_id>
           <version><?=$_GET['version']?></version>
           <isbn_10><?=$_GET['isbn_10']?></isbn_10>
@@ -116,16 +114,31 @@ sample output:
   
   }
   else {
+  
+    $query = "SELECT book_version_id FROM book_version_info 
+  	WHERE version='$version'
+  	AND   isbn_10='$isbn_10'
+  	AND   isbn_13='$isbn_13'
+  	AND   book_id='$book_id'";
+  	$result = mysql_query($query, $connection);
+  	// there better be a result
+  	// TODO handle error case here...
+  	
+  	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+  
+  
      ?>
       <response>
         <query>
-          <method>add/book</method>
+          <method>add/bookVersion</method>
           <book_id><?=$_GET['book_id']?></book_id>
           <version><?=$_GET['version']?></version>
           <isbn_10><?=$_GET['isbn_10']?></isbn_10>
           <isbn_13><?=$_GET['isbn_13']?></isbn_13>
         </query>
-        <success></success>
+        <success>
+        	<book_version_id><?=$row['book_version_id']?></book_version_id>
+        </success>
       </response>
     <?   
   }

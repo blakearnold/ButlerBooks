@@ -22,8 +22,6 @@ sample output:
 
 */
 ?>
-
-
 <?php
   print '<?xml version="1.0" encoding="UTF-8" ?>';
 
@@ -108,6 +106,18 @@ sample output:
   
   }
   else {
+  
+  	$query = "SELECT book_id FROM book_info 
+  	WHERE title='$title'
+  	AND   author='$author'
+  	AND   description='$description'";
+  	$result = mysql_query($query, $connection);
+  	// there better be a result
+  	// TODO handle error case here...
+  	
+  	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+  
+  
      ?>
       <response>
         <query>
@@ -116,7 +126,9 @@ sample output:
           <author><?=$_GET['author']?></author>
           <description><?=$_GET['description']?></description>
         </query>
-        <success></success>
+        <success>
+        	<book_id><?=$row['book_id']?></book_id>
+        </success>
       </response>
     <?   
   }

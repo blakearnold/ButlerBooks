@@ -21,10 +21,8 @@ sample output:
 
 */
 ?>
-
-
 <?php
-  print '<?xml seller="1.0" encoding="UTF-8" ?>';
+  print '<?xml version="1.0" encoding="ISO-8859-1"?>';
 
   $username = "adi";
   $password = "adi";
@@ -79,7 +77,7 @@ sample output:
   } else {
   	$book_version_id = mysql_real_escape_string($_GET["book_version_id"], $connection);
  	$seller = mysql_real_escape_string($_GET["seller"], $connection);
-  	$price = mysql_real_escape_string($_GET["price"], $connection);
+  	$price = mysql_real_escape_string(urldecode($_GET["price"]), $connection);
   }  
 
 
@@ -107,6 +105,18 @@ sample output:
   
   }
   else {
+  
+    $query = "SELECT book_instance_id FROM book_instance_info 
+  	WHERE seller='$seller'
+  	AND   price=$price
+  	AND   book_version_id=$book_version_id";
+  	
+  	$result = mysql_query($query, $connection);
+  	// there better be a result
+  	// TODO handle error case here...
+  	
+  	$row = mysql_fetch_array($result, MYSQL_ASSOC);
+  
      ?>
       <response>
         <query>
@@ -115,7 +125,9 @@ sample output:
           <seller><?=$_GET['seller']?></seller>
           <price><?=$_GET['price']?></price>
         </query>
-        <success></success>
+        <success>
+        	<book_instance_id><?=$query?><?=$row['book_instance_id']?></book_instance_id>
+        </success>
       </response>
     <?   
   }

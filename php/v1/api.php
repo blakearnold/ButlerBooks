@@ -14,6 +14,61 @@
 		$xml     = simplexml_load_string($text);
 		return $xml;
 	}
+
+	/**
+	* 	returns the newly created book_id on successful addition
+	* 	false otherwise
+	*/	
+	function add_book($title, $author, $description) {
+		$method  = "add/book.php?";
+		$method .= "title="   . urlencode($title);
+		$method .= "&author=" . urlencode($author);
+		$method .= "&description=" . urlencode($description);
+		
+		$xml = api_method($method);
+		if($xml->xpath('/response/error')) {
+			return false;
+		}
+		$arr = $xml->xpath('/response/success/book_id');
+		return $arr[0];
+	}
+	
+	/**
+	* 	returns the newly created book_version_id on successful addition
+	* 	false otherwise
+	*/
+	function add_version($book_id, $version, $isbn_10, $isbn_13) {
+		$method  = "add/bookVersion.php?";
+		$method .= "&book_id=" . urlencode($book_id);
+		$method .= "&version=" . urlencode($version);
+		$method .= "&isbn_10=" . urlencode($isbn_10);
+		$method .= "&isbn_13=" . urlencode($isbn_13);
+		
+		$xml = api_method($method);
+		if($xml->xpath('/response/error')) {
+			return false;
+		}
+		$arr = $xml->xpath('/response/success/book_version_id');
+		return $arr[0];
+	}
+	
+	/**
+	* 	returns the newly created book_instance_id on successful addition
+	* 	false otherwise
+	*/
+	function add_instance($book_version_id, $seller, $price) {
+		$method  = "add/bookInstance.php?";
+		$method .= "&book_version_id=" . urlencode($book_version_id);
+		$method .= "&seller=" . urlencode($seller);
+		$method .= "&price=" . urlencode($price);
+		
+		$xml = api_method($method);
+		if($xml->xpath('/response/error')) {
+			return false;
+		}
+		$arr = $xml->xpath('/response/success/book_instance_id');
+		return $arr[0];
+	}
 	
 	/**
 	*	applies a given field value from xml to an array/hash/map

@@ -32,8 +32,6 @@
 
 */
 ?>
-
-
 <?php
   print '<?xml version="1.0" encoding="UTF-8" ?>';
 
@@ -88,7 +86,7 @@
   $query = "SELECT book_info.*, book_version_info.*, book_instance_info.*
    FROM book_info, book_version_info, book_instance_info
    WHERE book_instance_info.book_version_id=book_version_info.book_version_id
-   AND   book_version_info.book_id=book_info.book_id
+   AND            book_version_info.book_id=book_info.book_id
    AND   book_instance_info.book_version_id=$id;";
   $result   = mysql_query($query, $connection);
   $num_rows = mysql_num_rows($result);
