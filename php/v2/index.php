@@ -72,6 +72,15 @@ body {
 	color: #69f;
 	font-size: 48px;
 	font-weight:bold;
+	padding:0px;
+}
+
+#subtitle {
+	font-family:helvetica;
+	width:100%;
+	text-align:center;
+	color: #FFF;
+	font-size: 16px;
 }
 
 .search_box {
@@ -110,19 +119,21 @@ body {
 <body>
 
 <div id="content">
-	<h1 id="title">ButlerBooks<h1><br />
-
+	<h1 id="title">ButlerBooks</h1><br />
+	<h2 id="subtitle">Columbia textbook listings</h2><br />
 	<div id="buy_box" class="search_box">	
+		Buy<br>
 		<form action="buy_search.php" method="GET">
-			<input name="query" id="buy_input" />
+			<input name="query" id="buy_input"  value="Title, Author, ISBN or Class" onclick="this.value=''" size=35 />
 			<button>buy</button>
 		</form>
 	</div>
 
 
-	<div id="sell_box" class="search_box">
+	<div id="sell_box" class="search_box"> 
+		Sell<br>
 		<form action="sell_search.php" method="GET">
-			<input name="query" id="sell_input" />
+			<input name="query" id="sell_input"  value="Title, Author, ISBN or Class" onclick="this.value=''" size="35" />
 			<button>sell</button>
 		</form>
 	</div>
