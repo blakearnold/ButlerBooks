@@ -102,7 +102,7 @@ sample output:
 <response>
   <query>
   	<method>get/bookInstance</method>
-  	<id><?=$id?></id>
+  	<book_version><?=$id?></book_instance>
   </query>
   <result>
   	<num_book_instances><?=$num_rows?></num_book_instances>
